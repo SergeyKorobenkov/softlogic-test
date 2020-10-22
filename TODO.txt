@@ -1,0 +1,21 @@
+Create:
+1 +
+2 +
+3 +
+4 
+5 
+6 +
+README 
+Документирование кода
+
+
+testing:
+1 
+2 
+3 
+4 
+5 
+6 
+
+may be:
+docker, front-end, authorization
