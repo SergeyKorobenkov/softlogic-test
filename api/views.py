@@ -143,7 +143,7 @@ class GetAll(generics.GenericAPIView):
                 img = img.save(str(img_name)) # сохраняем файл под исходным именем с нужным расширением
 
                 new_vector = create_vector(request.data, img_name) # преобразуем изображение в вектор
-                obj_id = int(request.data['id']) # забираем id записи куда положить вектор
+                obj_id = request.data['id'] # забираем id записи куда положить вектор
                 trigger = get_object_or_404(Person, id=obj_id) # ищем запись (если ее нет, идем нафиг)
                 
                 if trigger:
@@ -181,8 +181,8 @@ class CompareVectors(generics.GenericAPIView):
             
             else:
                 # достаем id из запроса
-                first_id = int(request.data['first_id'])
-                second_id = int(request.data['second_id'])
+                first_id = request.data['first_id']
+                second_id = request.data['second_id']
                 
                 # достаем объекты по id
                 first_obj = get_object_or_404(Person, id=first_id)
