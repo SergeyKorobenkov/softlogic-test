@@ -81,7 +81,7 @@ class GetAll(generics.GenericAPIView):
         Формат данных в запросе:
         first_name:str
         last_name:str
-        vector: str/int/float or None
+        vector: list or None
         Поля модели переварят и числовые данные, переданные в запросе,
         попутно превратив их в str формат.'''
         
@@ -123,7 +123,7 @@ class GetAll(generics.GenericAPIView):
         '''
         Метод на добавление вектора к записи в БД.
         Обязательные данные запроса:
-        id:int
+        id:str
         file:image
         Название файла должно состоять из латинских букв и/или цифр и не должно содержать 
         пробелов, иначе утилита не сможет корректно прочитать файл и вернет ошибку.
@@ -168,8 +168,8 @@ class CompareVectors(generics.GenericAPIView):
         '''
         Метод на сравнение двух векторов.
         Принимает данные в формате:
-        first_id:int
-        second_id:int
+        first_id:str
+        second_id:str
         Возвращает данные в формате:
         {"distance": float}
         '''

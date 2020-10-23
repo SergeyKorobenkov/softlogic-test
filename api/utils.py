@@ -30,27 +30,24 @@ def create_vector(data, img_name):
         image = cv2.resize(image,(width,height))
 
     one_dimension_array = image.reshape(-1)
-    normalized_array = one_dimension_array/255
-    total = normalized_array.tostring()
+    normalized_array = one_dimension_array/255 # нормализуем вектор
+    total = str(normalized_array.tolist()) # преобразование в строку для того что бы нормально хранилось в БД
     os.remove(f'{base_image}') # удаляем файл, что бы не засорять дисковое пространство
     return total
 
 
 def reconstruct_vector(data):
     ''' Восстановление вектора из строки, в которой он хранится в БД.'''
-    return np.fromstring(data, dtype=float)
+    new_list = data[1:-1].split(', ')
+    return np.array(new_list, dtype=float)
 
 
 def calc_distance(first, second):
     ''' Вычисление евклидова расстояния между векторами.'''
-    # восстанавливаем вектора из строк
-#    print(first[:100])
-#    print(first[-10:])
-#    print(second[:5])
-#    print(second[-10:])
-    first_vec = reconstruct_vector(first[1:])
-    second_vec = reconstruct_vector(second[1:])
-
+    # вызываем утилиту для восстановления вектора
+    first_vec = reconstruct_vector(first)
+    second_vec = reconstruct_vector(second)
+    # и вычисляем длину вектора
     distance = np.linalg.norm(first_vec-second_vec)
 
     return distance
