@@ -3,7 +3,7 @@ django==3.1.2
 pytz==2020.1 
 sqlparse==0.4.1
 djangorestframework==3.12.1
-djangorestframework-simplejwt==4.4.0 
+djangorestframework-simplejwt==4.3.0 
 pyjwt==1.7.1
 numpy==1.19.2
 certifi==2020.6.20 
